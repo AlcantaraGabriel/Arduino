@@ -1,3 +1,6 @@
+//Autor: Gabriel Alcântara Silva
+//Código Morse para LED
+
 int PIN = 13;
 
   void setup() {
