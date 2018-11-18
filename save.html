@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Hackathon</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> 
+        <link rel="stylesheet" type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+      <script>
+          function img(){
+                      const saveBtn = document.getElementById("saveBtn");
+                      const canvas = document.getElementById("canvas");
+
+                      saveBtn.onclick = function (e) {
+                          var http = new XMLHttpRequest();
+
+                          // Converte o canvas para image/png; base64:
+                          var image = canvas.toDataURL()
+
+                          // Define a imagem como valor a ser enviado:
+                          var params = "image=" + image; 
+
+                          http.open("POST", "http://localhost/save", true);
+                          http.setRequestHeader("Content-type", "text/plain"); // Talvez o Content-type pode ser outro, não tenho certeza quanto a isso
+
+                          http.onreadystatechange = function() {//Call a function when the state changes.
+                              if(http.readyState == 4 && http.status == 200) {
+                                  alert("Imagem salvada com sucesso");
+                          }
+              }
+
+            http.send(params);
+        }
+      </script>
+
+    </head>
+
+    <body id="LoginForm">
+            <div class="container">
+            <div class="login-form">
+            <div class="main-div">
+
+            <div class ="class-group">
+              <div class="embed-responsive embed-responsive-21by9">
+
+                <video id="player" controls autoplay class="embed-responsive-item"  width=100% height=100%></video>
+                <button id="capture">Capture</button>
+                <button onclick="img()">Salvar Imagem</button>
+
+                <canvas id="snapshot" width=100% height=100%></canvas>
+              </div>
+
+            </div>    
+            </div></div></div>
+
+        </body>
+</html>
+
